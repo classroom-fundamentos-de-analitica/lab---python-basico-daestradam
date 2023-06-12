@@ -47,7 +47,10 @@ def pregunta_02():
     ]
 
     """
-    return
+    letras_p2 = [i[0] for i in lista]
+    listap2 = [(letra, letras_p2.count(letra)) for letra in ['A', 'B', 'C', 'D', 'E']]
+    return listap2
+
 
 
 def pregunta_03():
