@@ -161,7 +161,21 @@ def pregunta_06():
     ]
 
     """
-    return
+    dicc={}
+    for row in listadef:
+        for i in row[4].split(","):
+            currentKeyValue = dicc.get(str(i[:3]),-1)
+            currentValue = int(i[4:])
+            if(currentKeyValue == -1):
+                dicc[str(i[:3])] = (currentValue,currentValue)
+            if(currentKeyValue !=-1):
+                dicc[str(i[:3])] = (min(currentKeyValue[0],currentValue),max(currentKeyValue[1],currentValue))
+
+    sort = list(sorted(dicc.items()))
+    listap6 = []
+    for i in sort:
+        listap6.append((i[0],i[1][0],i[1][1]))
+    return listap6
 
 
 def pregunta_07():
@@ -185,7 +199,15 @@ def pregunta_07():
     ]
 
     """
-    return
+    dicc = {}
+    for i in listadef:
+        index = int(i[1])
+        current = dicc.get(index,-1)
+        if(current == -1):
+            dicc[index] = [i[0]]
+        else:
+            dicc[index].append(i[0])
+    return list(sorted(dicc.items()))
 
 
 def pregunta_08():
@@ -210,7 +232,18 @@ def pregunta_08():
     ]
 
     """
-    return
+    dicc = {}
+    for i in listadef:
+        current = dicc.get(i[1],-1)
+        if(current == -1):
+            dicc[i[1]] = [i[0]]
+        else:
+            dicc[i[1]].append(i[0])
+    sort = list(sorted(dicc.items()))
+    listap8 = []
+    for i in sort:
+        listap8.append((int(i[0]),list(sorted(set(i[1])))))
+    return listap8
 
 
 def pregunta_09():
@@ -233,7 +266,11 @@ def pregunta_09():
     }
 
     """
-    return
+    dicc={}
+    for i in listadef:
+        for i in i[4].split(","):
+            dicc[str(i[:3])] = dicc.get(str(i[:3]),0) + 1
+    return dict(sorted(dicc.items()))
 
 
 def pregunta_10():
@@ -254,7 +291,10 @@ def pregunta_10():
 
 
     """
-    return
+    listap10 = []
+    for i in listadef:
+        listap10.append((i[0],len(i[3].split(",")),len(i[4].split(","))))
+    return listap10
 
 
 def pregunta_11():
@@ -275,7 +315,11 @@ def pregunta_11():
 
 
     """
-    return
+    dicc={}
+    for row in listadef:
+        for i in row[3].split(","):
+            dicc[str(i)] = dicc.get(str(i),0) + int(row[1])
+    return dict(sorted(dicc.items()))
 
 
 def pregunta_12():
@@ -293,4 +337,8 @@ def pregunta_12():
     }
 
     """
-    return
+    dicc={}
+    for row in listadef:
+        for i in row[4].split(","):
+            dicc[row[0]] = dicc.get(row[0],0) + int(i[4:])
+    return dict(sorted(dicc.items())) 
