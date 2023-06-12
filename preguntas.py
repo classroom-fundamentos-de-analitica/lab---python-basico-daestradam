@@ -13,10 +13,10 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 import csv
 
-lista = []
+listadef = []
 with open('data.csv', 'r', encoding='UTF-8') as data:
     entrada = csv.reader(data, delimiter='\t')
-    lista = list(entrada)
+    listadef = list(entrada)
 
 def pregunta_01():
     """
@@ -27,7 +27,7 @@ def pregunta_01():
 
     """
     suma=0
-    for i in lista:
+    for i in listadef:
         suma=suma+int(i[1])
     return suma
 
@@ -47,7 +47,7 @@ def pregunta_02():
     ]
 
     """
-    letras_p2 = [i[0] for i in lista]
+    letras_p2 = [i[0] for i in listadef]
     listap2 = [(letra, letras_p2.count(letra)) for letra in ['A', 'B', 'C', 'D', 'E']]
     return listap2
 
@@ -68,7 +68,14 @@ def pregunta_03():
     ]
 
     """
-    return
+    listap3 = [z[0] for z in listadef[0:]]
+    listap3 = sorted(list(set(listap3)))
+    listasump3= []
+    for i in listap3:
+        w = [int(z[1]) for z in listadef[0:] if z[0] == i]
+        listasump3.append(sum(w))
+    listasump3 = list(zip(listap3,listasump3))
+    return listasump3
 
 
 def pregunta_04():
@@ -93,7 +100,14 @@ def pregunta_04():
     ]
 
     """
-    return
+    listap4 = [z[2].split("-") for z in listadef[0:]]
+    b = sorted(list(set([z[1] for z in listap4])))
+    cuenta = []
+    for i in b:
+        w = ([z for z in listap4 if z[1] == i])
+        cuenta.append(len(w))
+    cuenta = list(zip(b,cuenta))
+    return cuenta
 
 
 def pregunta_05():
@@ -111,7 +125,18 @@ def pregunta_05():
     ]
 
     """
-    return
+    listap5 = [z[0] for z in listadef[0:]]
+    listap5 = sorted(list(set(listap5)))
+
+    maxi = []
+    mini = []
+    for i in listap5:
+        w = [int(z[1]) for z in listadef[0:] if z[0] == i]
+        maxi.append(max(w))
+        mini.append(min(w))
+
+    valor = list(zip(listap5,maxi,mini))
+    return valor
 
 
 def pregunta_06():
